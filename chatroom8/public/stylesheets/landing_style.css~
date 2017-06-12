@@ -223,6 +223,7 @@
 	width: 140px;
 	height: 140px;
 	border-radius: 50%;
+	background-image: url("/chih.jpg");
 	background-position: center;
 	background-size: cover;
 	font-family: 'Play', sans-serif;

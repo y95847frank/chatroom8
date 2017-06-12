@@ -119,11 +119,16 @@ router.post('/file', function(req, res) {
     if (typeof len === 'undefined' || !len) {
         var source = req.files.fileToUpload.file;
         var dest = global.appRoot + '/save/' + path.basename(source);
+        var dest2 = global.appRoot + '/public/' + path.basename(source);
         fse.move(source, dest, function(err){
             if (err) return console.error(err)
             console.log("success!");
         });
         paths.push(path.basename(source));
+        fse.move(source, dest2, function(err){
+            if (err) return console.error(err)
+            console.log("success!");
+        });
     } else { 
       console.log("Multiple files!")
       for(var i=0; i<len; i++){

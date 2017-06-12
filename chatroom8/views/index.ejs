@@ -21,10 +21,10 @@
             </div>
 
             <div class = "side-bar" id = "style-1">
-                <div class = "m-bar">
-                    <h1><%= locals.user.username %></h1>
+                <div class = "profile-photo" style = "background-image: url(/<%= locals.user.username %>.jpg)">
                 </div>
-                
+                <h4><%= locals.user.username %></h4>
+
                 <div style="font-size:20px" align="center"class="word" id="onlinelist"></div>
                 <div class="room-list" id="roomlist"></div>
                 

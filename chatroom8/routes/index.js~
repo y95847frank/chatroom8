@@ -53,7 +53,6 @@ router.get('/rooms', function(req, res) {
       res.status(500)
       return console.log("Chatroom loading error:", err)
     }
-    console.log(res)
     res.send(rooms)
   });
 });

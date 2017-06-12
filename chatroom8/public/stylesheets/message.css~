@@ -238,10 +238,3 @@ input[type=searchtext]:focus {
   width: 100%;
 
 }
-
-
-.search-box{
-    margin: 10px auto;
-    min-width: 30%;
-    display: block;
-}
