@@ -45,8 +45,8 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/message', message);
 
-//app.use('/uploads', express.static('save'));
-app.use('/uploads', express.static('./'));
+app.use('/uploads', express.static('save'));
+//app.use('/uploads', express.static('./'));
 
 // passport config
 var Account = require('./models/account');
@@ -109,7 +109,7 @@ io.sockets.on('connection', function(socket) {
       );
       
       line = socket.username+' : '+text + '\n';
-      file_name = socket.room +'_log.txt';
+      file_name = 'save/'+socket.room +'_log.txt';
       fs.appendFile(file_name, line, function (err) {
          if (err) throw err;
          console.log('Saved!');

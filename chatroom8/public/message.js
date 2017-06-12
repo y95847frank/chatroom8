@@ -14,8 +14,8 @@ function reloadmsgs(socket) {
       $('#messages').empty();
       data.forEach(function(msg) {
         if (username == msg.sender) {
-          $('#messages').append($('<li id="'+msg._id+'">')
-            .html(msg.text).css("text-align", "right"));
+          $('#messages').append($('<div id="'+msg._id+'" class = "msg-self">')
+            .html(msg.text));
           $('#'+msg._id).dblclick(function() {
             if (disconnect) {
               alert("You're disconnected now...");
@@ -27,9 +27,12 @@ function reloadmsgs(socket) {
           })
         } else {
           $('#messages').append(
-            $('<li id="'+msg._id+'">').html("["+msg.sender+"] "+msg.text));
+            $('<p class = "msg-sender">').html(msg.sender + ":"),
+            $('<div id="'+msg._id+'" class = "msg-other">').html(msg.text)
+            );
         }
       })
+      updateScroll();
     },
     dataType: 'json'
   });
@@ -39,6 +42,14 @@ function reloadmsgs(socket) {
 $(document).ready(function() {
   socketRegister();
 });
+
+function updateScroll(){
+    // var element = document.getElementById("style-1");
+    // element.scrollTop = element.scrollHeight;
+
+    $("#style-1").animate({ scrollTop: $("#style-1")[0].scrollHeight }, "slow");
+    return false;
+}
 
 
 function socketRegister(data) {
@@ -54,38 +65,16 @@ function socketRegister(data) {
 
   socket.on('connect', function() {
     //show state
-        $('#state').html($('<font color="#00B7FF">----Connected----</font>')
-        .css("text-align", "right"));
-        
-        //$('#log').html($('<a href="/uploads/'+roomid+'_log.txt" download="XD" ">Log File</a>')
-        //<input type="button" value="button name" onclick="window.open('http://www.website.com/page')" />
-
-        //var tmp = "window.open(this.href, 'mywindow', 'menubar=1, resizable=1, width=200,height=200');return false;";
-        //$('#log').html($('<a href="/uploads/'+roomid+'_log.txt" onclick='+tmp+'>Log File</a>')
-        //var p = '<input type="button" value="Log File" onclick="window.open('')" />'
-        $('#log').html($('<a id="myLink" href="/uploads/'+roomid+'_log.txt" target="_blank">Log File</a>')
-        .css("text-align", "right"));
-        //$('#log').html($('<font color="#6d84b4">'+roomid+'_log.txt</font>')
-        //.css("text-align", "left"));
-        /*
-        CR.findById(roomid, function(err, r){
-            if(err){
-                $('#state').html($('<font color="#6d84b4">'+roomid+'</font>')
-                .css("text-align", "right"));
-            }
-            else if(r.secret){
-                $('#state').html($('<font color="#6d84b4">'+r.secret+'</font>')
-                .css("text-align", "right"));
-            }
-        });
-        */
-
-        reloadmsgs(socket);
-        freeAllForm();
-        disconnect = false;
-        socket.emit('set name', username);
-        socket.emit('join room', roomid);
-        console.log("Server ensures me to join", roomid);
+    $('#state').html($('<font color="#6d84b4">Connected</font>')
+      .css("text-align", "right"));
+    $('#log').html($('<a id="myLink" href="/uploads/'+roomid+'_log.txt" target="_blank">Log File</a>')
+      .css("text-align", "right"));
+    reloadmsgs(socket);
+    freeAllForm();
+    disconnect = false;
+    socket.emit('set name', username);
+    socket.emit('join room', roomid);
+    console.log("Server ensures me to join", roomid);
   })
 
   socket.on('Room meta', function(status) {
@@ -114,8 +103,13 @@ function socketRegister(data) {
   //   console.log(data.message);
   // });
   // Gets message
+
   socket.on('chat message', function(sender, msg, id){
-    $('#messages').append($('<li id="'+id+'">').html("["+sender+"] "+msg));
+    $('#messages').append(
+        $('<p class = "msg-sender">').html(sender + ":"),
+        $('<div id="'+msg._id+'" class = "msg-other">').html(msg)
+      );
+    updateScroll();
   });
 
   // Disconnect from server.
@@ -163,9 +157,9 @@ function socketRegister(data) {
     let msg = $('#m').val();
     socket.emit('chat message', msg, counter);
     $('#m').val('');
-    $('#messages').append($('<li id="'+counter+'">').html(msg)
-      .css("text-align", "right"));
+    $('#messages').append($('<div id="'+counter+'" class = "msg-self"> ').html(msg));
     counter = (counter + 1) % 100000000;  // Avoids overflow.
+    updateScroll();
     return false;
   });
   // File Transfer
@@ -184,8 +178,9 @@ function socketRegister(data) {
         msg += '<a target="_blank" href="/uploads/'+names[i]+'">'+names[i]+'</a>';
    }
     socket.emit('chat message', msg, counter);
-    $('#messages').append($('<li id="'+counter+'">').css("text-align", "right").html(msg));
+    $('#messages').append($('<div id="' + counter + '"class = "msg-self">').html(msg));
     counter = (counter + 1) % 100000000;
+    updateScroll();
     return;
   }, 'json');
 }

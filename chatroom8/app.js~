@@ -45,8 +45,8 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/message', message);
 
-//app.use('/uploads', express.static('save'));
-app.use('/uploads', express.static('./'));
+app.use('/uploads', express.static('save'));
+//app.use('/uploads', express.static('./'));
 
 // passport config
 var Account = require('./models/account');
