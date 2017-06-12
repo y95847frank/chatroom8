@@ -1,10 +1,3 @@
-# ChatInYourFantasyTerminal
-
-As you know, computer network 2016 final project.
-Or more than that?
-
-## Usage
-
 ### Preparation
 
 1. Go to https://docs.mongodb.com/manual/administration/install-community/
@@ -13,8 +6,6 @@ Or more than that?
 
 ### Build server
 ```
-# git clone [this repo]
-cd ChatInYourFxxxxxxTerminal/
 npm i
 npm start
 ```
@@ -26,13 +17,3 @@ npm start
 sudo npm install -g nodemon
 ```
 
-
-
-## Features
-1. Terminalization
-2. Chatroom
-3. File transmission
-4. Blah blah chill features
-
-## What to expect?
-- Easter egg??
