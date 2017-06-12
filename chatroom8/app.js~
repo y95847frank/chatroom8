@@ -189,7 +189,7 @@ io.sockets.on('connection', function(socket) {
         });
         console.log("check", on)
         if (!on){
-            file_name = 'save/'+socket.room +'_log.txt';
+            file_name = socket.room +'_log.txt';
             fs.writeFile(file_name, "", function (err) {
                 if (err){console.log("fuck!")}
                 console.log('Delete Log');
