@@ -15,7 +15,7 @@ function reloadrooms() {
       room.users.forEach(function(u){
           
           if (k.indexOf(u) < 0){
-           $('#onlinelist').append('<font color="orange"> '+u+' </font>')
+           $('#onlinelist').append('<font color="#b35900"> '+u+' </font>')
            k += u
            k += ' '
           }
