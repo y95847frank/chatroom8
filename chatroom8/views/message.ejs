@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <link rel="stylesheet"  href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/message.css" />
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Exo|Gloria+Hallelujah|Kumar+One|Orbitron|Play|Poiret+One|Space+Mono" rel="stylesheet">    
+  </head>
+  <body>
+    <div id="username" style="display: none;"><%= locals.user.username %></div>
+    <div class = "color-overlay">
+
+        <div class = "top-bar">
+          <h1><%= title %></h1>
+        </div>
+
+
+        <!-- User list -->
+        <div style="font-size:24px" class="word" id="onlinelist"></div>
+
+        <!-- Search Box -->
+        <!-- <div class="col-lg-3">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Search</span>
+          <input type="searchtext" name="search" class="form-control" id="search" placeholder="We have talked about..." aria-describedby="basic-addon1">
+        </div>
+        </div> -->
+
+        <div style="font-size:24px" class="word" id="state" align="right"></div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="result-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="result-title">Search result</h4>
+              </div>
+              <div class="modal-body" id="result-body">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Time</th>
+                      <th>Sender</th>
+                      <th>Message</th>
+                    </tr>
+                  </thead>
+                  <tbody id="result-insert">
+
+                  </tbody>
+                </table>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div id="word" class="return-btn" onclick="location.href='/'">
+          
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="32px" height="32px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
+<g>
+  <g id="Left">
+    <g>
+      <path d="M353.812,172.125c-7.478,0-14.21,2.926-19.335,7.612l-0.058-0.077L219.67,284.848c-5.91,5.451-9.295,13.101-9.295,21.152     s3.385,15.701,9.295,21.152L334.42,432.34l0.058-0.076c5.125,4.686,11.857,7.611,19.335,7.611     c15.836,0,28.688-12.852,28.688-28.688c0-8.357-3.634-15.836-9.353-21.076l0.058-0.076L281.52,306l91.685-84.054l-0.058-0.077     c5.719-5.221,9.353-12.68,9.353-21.057C382.5,184.977,369.648,172.125,353.812,172.125z M306,0C137.012,0,0,137.012,0,306     s137.012,306,306,306s306-137.012,306-306S474.988,0,306,0z M306,554.625C168.912,554.625,57.375,443.088,57.375,306     S168.912,57.375,306,57.375S554.625,168.912,554.625,306S443.088,554.625,306,554.625z"/>
+    </g>
+  </g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+
+
+        </div>
+        
+        <div class = "mid-column" id = "style-1">
+          <!-- Message box -->
+          <div id="messages"></div>
+        </div>
+          
+        <form id = "msg-form" action="">
+          <div class = "msg-box">
+            <input id="m" autocomplete="off" />
+          </div>
+          <button class="send-btn">Send</button>
+        </form>
+
+          <!-- File Transfer -->
+          <ul id="files"></ul>
+          <form id="file-form" action="/file" method="post" enctype="multipart/form-data">
+              
+              <div id="choose-file" class="col-lg-10">
+                <input type="file" name="fileToUpload" id="fileToUpload" multiple>
+              </div>
+              
+              <div id="send-file">
+                <button id="word" class="send-file-btn">Send File</button>
+              </div>
+
+
+          </form>
+
+    </div>
+    
+
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/jquery.form.min.js"></script>
+    <script type="text/javascript" src="/message.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

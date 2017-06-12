@@ -1,0 +1,28 @@
+{
+  "name": "chatinyourfxxxxxxterminal",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./app.js",
+    "debug": "nodemon --inspect ./app.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "~2.5.2",
+    "express": "^4.14.0",
+    "express-busboy": "^5.0.0",
+    "express-session": "^1.14.2",
+    "fs-extra": "^1.0.0",
+    "gith": "^1.0.4",
+    "mongodb": "^2.2.16",
+    "mongoose": "^4.7.4",
+    "morgan": "~1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0",
+    "serve-favicon": "^2.3.2",
+    "socket.io": "^1.7.2"
+  }
+}

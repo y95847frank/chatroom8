@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <link rel="stylesheet"  href="/stylesheets/register.css" />
+    <!-- icon -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Exo|Gloria+Hallelujah|Kumar+One|Orbitron|Play|Poiret+One|Space+Mono" rel="stylesheet">  
+  </head>
+  <body class="bg">
+
+    <div class = "mid-section">
+        <div class = "color-overlay">
+            <div class = "top-bar">
+                <h1><%= title %></h1>
+            </div>
+
+
+            <div class="form-container">
+                <h2 class="word">Register</h2>
+                
+                <form role="form" action="/register" method="post">
+                    <div class="form-group">
+                      <input class="form-control" type="text" name="username" placeholder="eg: Trump">
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="password" name="password" placeholder="Trump's secret">
+                    </div>
+                    <% if (locals.error) { %>
+                    <p class="error-msg"><%= locals.error %></p>
+                    <% } %>
+                    <div class = "btn-box">
+                        <button id="word" class="btn" type="submit">Enter</button>
+
+                        <a href="/">
+                            <button id="word" class="btn" type="button">Quit</button>
+                        </a>
+
+                    </div>
+                    
+                  </form>
+            </div>
+
+
+        </div>
+    </div>
+
+    
+
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

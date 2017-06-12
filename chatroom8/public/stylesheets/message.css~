@@ -1,0 +1,240 @@
+body{
+  background-color: rgb(66, 124, 132);
+}
+
+.top-bar{
+  background-color: yellow;
+  height: 80px;
+  font-family: 'Play', sans-serif;
+}
+
+.top-bar h1{
+  float: left;
+  margin: 0;
+  color: rgb(45, 69, 90);
+  letter-spacing: 10px;
+  padding: 20px;
+  font-family: 'Play', sans-serif;
+}
+
+.top-bar1{
+  background-color: yellow;
+  height: 100px;
+  font-family: 'Play', sans-serif;
+}
+
+.top-bar1 h1{
+  float: left;
+  margin: 0;
+  color: rgb(45, 20, 90);
+  letter-spacing: 10px;
+  padding: 20px;
+  font-family: 'Play', sans-serif;
+}
+
+.color-overlay{
+  background-color: rgb(66, 124, 132);
+  height: 100vh;
+  font-family: 'Play', sans-serif;
+}
+
+.word{
+  text-align: center;
+}
+
+.mid-column{
+  margin: auto;
+  width: 30%;
+  background-color: #083644;
+  overflow: auto;
+  height: 350px;
+  border-radius: 10px;
+  padding: 10px 0 10px 0;
+}
+
+#style-1::-webkit-scrollbar-track
+{
+
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+#style-1::-webkit-scrollbar
+{
+  border-radius: 10px;
+  width: 20px;
+  background-color: #083644;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  border: 8px solid #083644;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #99ffff;
+}
+
+.msg-self{
+  background-color: white;
+  color: black;
+  display: inline-block;
+  border-radius: 3px;
+  clear:both;
+  float: right;
+  padding: 3px 10px;
+  margin: 8px 20px 8px 0;
+  max-width: 265px;
+  word-wrap: break-word;
+}
+
+.msg-other{
+  background-color: white;
+  color: black;
+  display: inline-block;
+  border-radius: 3px;
+  clear:both;
+  float: left;
+  padding: 3px 10px;
+  margin: 8px 0 8px 20px;
+  max-width: 265px;
+  word-wrap: break-word;
+}
+
+.msg-sender{
+  clear:both;
+  float: left;
+  display: inline-block;
+  color: white;
+  margin-left: 20px;
+  margin-bottom: 0;
+}
+
+#msg-form {
+  padding: 3px;
+  width: 30%;
+  margin: 10px auto;
+}
+
+.msg-box{
+  width: 85%;
+  display: inline-block;
+}
+
+#m {
+  display: inline-block;
+  height: 35px;
+  width: 100%;
+}
+
+.send-btn{
+  text-align: center;
+  display: inline-block;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #FCA311;
+  color: white;
+  border: none;
+  font-size: 14px;
+  margin-left: 5px;
+  letter-spacing: 1px;
+}
+
+#file-form {
+  padding: 3px;
+  width: 30%;
+  margin: 10px auto;
+}
+
+.col-lg-10{
+  width: 85%;
+  display: inline-block;
+}
+
+.send-file-btn{
+  text-align: center;
+  float: right;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #FCA311;
+  color: white;
+  border: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+
+}
+
+#choose-file{
+  /*font: 24px;*/
+  /*font-family: 'Play', sans-serif;*/
+  color:white;
+  font-size:16px;
+  width: 100%;
+  display: inline-block;
+  padding: 0;
+}
+
+
+
+#file-form input { 
+  /*border: 0; 
+  padding: 10px; 
+  width:90%;*/
+  margin:.5%; 
+  
+}
+
+#file-form  button {
+  margin-left: 0.5%; 
+  /*width: 9%; 
+  background: rgb(130, 224, 255); 
+  border: none; 
+  padding: 10px; */
+}
+
+.return-btn{
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  padding: 4px;
+  position: absolute;
+  left: 30%;
+
+}
+
+.return-btn path{
+  fill: #083644;
+  transition: fill 0.5s;
+}
+
+.return-btn:hover path{
+  fill: #99ffff;
+}
+
+
+#messages { 
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0; 
+}
+
+#messages li {
+  /*background: rgb(224,224,224); */
+  background: white; 
+  padding: 5px 10px; 
+}
+
+#messages li:nth-child(odd) { 
+  background: #afbdd4; 
+}
+
+.input[type=searchtext] {
+  width: 130px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=searchtext]:focus {
+  width: 100%;
+
+}
