@@ -88,6 +88,58 @@ router.post('/rooms/new', function(req, res) {
   })
 });
 
+router.get('/friends', function(req, res) {
+  console.log("User ", req.user.username, "finds own friends")
+  Account.find({ username: req.user.username }, function(err, user) {
+    if (err) {
+      res.status(500)
+      return console.log("friend-list loading error:", err)
+    }
+    target_user = user[0]
+    console.log('My Debug before!!!!!!!',target_user)
+    res.send(target_user)
+  });
+});
+
+// req.body ::
+//    friend : to add friend
+router.post('/friends/new', function(req, res) {
+  console.log("friend to add ", req.user, "->", req.body)
+
+  Account.findOne({ username: req.body.friend }, function(err, friend) {
+    if (err) {
+      res.status(500)
+      return console.log("friend loading error:", err)
+    }
+    console.log(friend)
+
+    if (friend) {  // friend exists, else friend == null
+      friend_name = friend.username
+      Account.findOne({ username: req.user.username }, function(err, user) {
+        if (err) {
+          res.status(500)
+          return console.log("user loading error:", err)
+        }
+        new_friend_list = user.friend_list
+        if (new_friend_list.indexOf( friend_name ) < 0){
+            new_friend_list.push(friend_name)
+        }
+        //new_friend_list = []
+        user.friend_list = new_friend_list
+
+        user.save(function (err){
+          if (err) {
+            //res.status(500)
+            return console.log("Error adding friend:", err)
+          }
+          res.json(user)
+        });
+      });
+    }
+  });
+});
+
+
 
 router.get('/logout', function(req, res) {
   req.logout();

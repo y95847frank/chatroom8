@@ -28,8 +28,28 @@ function reloadrooms() {
   })
 }
 
+function reloadfriendlist() {
+  if (!document.getElementById('friendlist')) {
+    console.log("Not login yet.")
+    return
+  }
+  $.get('/friends', function(data) {
+    $('#friendlist').empty()
+    console.log(data);
+    var n = alert(data)
+    var n = alert(data.friend_list)
+
+    friendlist = data.friend_list
+    friendlist.forEach(function(friend) {
+      var n = alert(friend)
+      
+    })
+  })
+}
+
 $(document).ready(function() {
   reloadrooms();
+  reloadfriendlist();
 })
 
 function createProom() {
@@ -125,5 +145,32 @@ function createroom() {
     },
     contentType: "application/json",
     dataType: 'json'
+  });
+}
+
+function addFriend() {
+  var name = prompt("friend name plz:")
+  if (name === null) {  // User cancelled adding friend.
+    return;
+  } else if (name == '') {
+    alert("No empty friend name!!!")
+    return;
+  } else if (!(/^[a-zA-Z0-9- ]*$/.test(name))) {
+    alert("Only english and number are acceptable.");
+    return;
+  }
+  
+  console.log("friend:", name)
+
+  $.ajax({
+      type: 'POST',
+      url: '/friends/new',
+      data: JSON.stringify({friend:name}), // or JSON.stringify ({name: 'jonas'}),
+      success: function(data) {
+        console.log(data)
+        reloadfriendlist()
+      },
+      contentType: "application/json",
+      dataType: 'json'
   });
 }
