@@ -96,35 +96,40 @@ router.get('/friends', function(req, res) {
       return console.log("friend-list loading error:", err)
     }
     target_user = user[0]
-    console.log('My Debug before!!!!!!!',target_user)
+    console.log('User info' , target_user)
     res.send(target_user)
   });
+
 });
 
 // req.body ::
 //    friend : to add friend
 router.post('/friends/new', function(req, res) {
   console.log("friend to add ", req.user, "->", req.body)
+  var info // for alert in public/index.js
 
   Account.findOne({ username: req.body.friend }, function(err, friend) {
     if (err) {
-      res.status(500)
+      //res.status(500)
       return console.log("friend loading error:", err)
     }
     console.log(friend)
 
     if (friend) {  // friend exists, else friend == null
-      friend_name = friend.username
+      var friend_name = friend.username
       Account.findOne({ username: req.user.username }, function(err, user) {
         if (err) {
           res.status(500)
           return console.log("user loading error:", err)
         }
-        new_friend_list = user.friend_list
+        var new_friend_list = user.friend_list
         if (new_friend_list.indexOf( friend_name ) < 0){
             new_friend_list.push(friend_name)
+            info = 'Successfully add friend : ' + friend_name
         }
-        //new_friend_list = []
+        else {
+          info = 'friend : ' + friend_name + ' already exist!!'
+        }
         user.friend_list = new_friend_list
 
         user.save(function (err){
@@ -132,12 +137,54 @@ router.post('/friends/new', function(req, res) {
             //res.status(500)
             return console.log("Error adding friend:", err)
           }
-          res.json(user)
+          //res.json(user)
+          res.json(info)
         });
       });
     }
+    else {
+      // no such user
+      info = 'No such user : ' + req.body.friend + ' !!!'
+      res.json(info)
+    }
   });
 });
+
+// req.body ::
+//    friend : to delete friend
+router.post('/friends/delete', function(req, res) {
+  console.log("friend to delete ", req.user, "->", req.body)
+
+  var friend_name = req.body.friend
+  var info // for alert in public/index.js
+  Account.findOne({ username: req.user.username }, function(err, user) {
+    if (err) {
+      res.status(500)
+      return console.log("user loading error:", err)
+    }
+    var new_friend_list = user.friend_list
+    var index = new_friend_list.indexOf(friend_name);
+    if (index < 0){
+        // no such friend
+        info = 'No such friend : ' + friend_name + ' !!!'
+    }
+    else {
+       new_friend_list.splice(index, 1);
+       info = 'Successfully delete friend : ' + friend_name
+    }
+    user.friend_list = new_friend_list
+
+    user.save(function (err){
+      if (err) {
+        //res.status(500)
+        return console.log("Error adding friend:", err)
+      }
+      //res.json(user)
+      res.json(info)
+    });
+  });
+});
+
 
 
 

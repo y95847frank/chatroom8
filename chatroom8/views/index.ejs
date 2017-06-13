@@ -11,31 +11,51 @@
     </head>
     <body>
     <!-- style="background-color:#FFD382;padding:10px;margin-bottom:5px;" -->
-        <div class = "mid-section">
-        <div class = "color-overlay">
+
             
 
             <% if (locals.user) { %>
+            <div class = "mid-section-2">
+            
+
             <div class = "top-bar">
                 <h1><%= title %></h1>
             </div>
 
-            <div class = "side-bar" id = "style-1">
-                <div class = "profile-photo" style = "background-image: url(/<%= locals.user.username %>.jpg)">
+            
+
+                <div class = "room-friend">
+                    <div class = "side-bar" id = "style-1">
+                        <div class = "profile-photo" style = "background-image: url(/<%= locals.user.username %>.jpg)">
+                        </div>
+                        <h4><%= locals.user.username %></h4>
+
+                        
+                        
+                        <div class="room-list" id="roomlist"></div>
+
+                        
+                        <button id="word" class="create-room-btn" onclick="createroom()">Create room</button>
+                        <button id="word" class="create-room-btn" onclick="createProom()">Create Secret</button>
+                        <button id="word" class="create-room-btn" onclick="location.href='/logout'">Logout</button>
+                    </div>
+
+                    <div class = "friend-bar">
+                        <h1>Friends</h1>
+                        <div id="friendlist"></div>
+                        <button id="word" class="delete-friend-btn" onclick="addFriend()">Add Friend</button>
+                        <button class="delete-friend-btn" onclick="deleteFriend()">Delete Friend</button>
+                    </div>
                 </div>
-                <h4><%= locals.user.username %></h4>
 
-                <div style="font-size:20px" align="center" class="word" id="onlinelist"></div>
-                <div style="font-size:20px" align="center" class="word" id="friendlist"></div>
-                <div class="room-list" id="roomlist"></div>
+            
 
-                
-                <button id="word" class="create-room-btn" onclick="createroom()">Create room</button>
-                <button id="word" class="create-room-btn" onclick="createProom()">Create Secret</button>
-                <button id="word" class="create-room-btn" onclick="addFriend()">Add Friend</button>
-                <button id="word" class="create-room-btn" onclick="location.href='/logout'">Logout</button>
+            
             </div>
+
             <% } else { %>
+            <div class = "mid-section">
+            <div class = "color-overlay">
             <div class = "top-bar">
                 <h1><%= title %></h1>
                 
@@ -55,10 +75,12 @@
                     <a href="#contact">Contact us</a>
                 </nav>
             </div>
+
+            </div>
+            </div>
             <% } %>
 
-        </div>
-        </div>
+
 
 
         <script type="text/javascript" src="./jquery-3.1.1.min.js"></script>

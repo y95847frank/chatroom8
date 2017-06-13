@@ -34,12 +34,13 @@ function reloadfriendlist() {
     return
   }
   $.get('/friends', function(data) {
+    $('#friendlist').empty()
     console.log(data);
 
     friendlist = data.friend_list
     friendlist.forEach(function(friend) {
       //var n = alert(friend)
-      $('#friendlist').append('<font color="#b35900"> '+friend+' </font>')
+      $('#friendlist').append('<div class = "friends-box"> '+ '<div class = "avatar" style = "background-image: url(/'+friend+'.jpg)"></div>'+'<p>'+friend+'</p>'+' </div>')
     })
   })
 }
@@ -146,7 +147,7 @@ function createroom() {
 }
 
 function addFriend() {
-  var name = prompt("friend name plz:")
+  var name = prompt("Add Friend\nfriend name plz:")
   if (name === null) {  // User cancelled adding friend.
     return;
   } else if (name == '') {
@@ -166,6 +167,35 @@ function addFriend() {
       success: function(data) {
         console.log(data)
         reloadfriendlist()
+        alert(data)
+      },
+      contentType: "application/json",
+      dataType: 'json'
+  });
+}
+
+function deleteFriend() {
+  var name = prompt("Delete Friend\nfriend name plz:")
+  if (name === null) {  // User cancelled adding friend.
+    return;
+  } else if (name == '') {
+    alert("No empty friend name!!!")
+    return;
+  } else if (!(/^[a-zA-Z0-9- ]*$/.test(name))) {
+    alert("Only english and number are acceptable.");
+    return;
+  }
+  
+  console.log("friend:", name)
+
+  $.ajax({
+      type: 'POST',
+      url: '/friends/delete',
+      data: JSON.stringify({friend:name}), // or JSON.stringify ({name: 'jonas'}),
+      success: function(data) {
+        console.log(data)
+        reloadfriendlist()
+        alert(data)
       },
       contentType: "application/json",
       dataType: 'json'
