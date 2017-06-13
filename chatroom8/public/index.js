@@ -34,15 +34,12 @@ function reloadfriendlist() {
     return
   }
   $.get('/friends', function(data) {
-    $('#friendlist').empty()
     console.log(data);
-    var n = alert(data)
-    var n = alert(data.friend_list)
 
     friendlist = data.friend_list
     friendlist.forEach(function(friend) {
-      var n = alert(friend)
-      
+      //var n = alert(friend)
+      $('#friendlist').append('<font color="#b35900"> '+friend+' </font>')
     })
   })
 }
